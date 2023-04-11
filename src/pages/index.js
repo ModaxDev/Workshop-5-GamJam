@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import UserNamePage from './UserNamePage.jsx'
+import ScoreBoard from './ScoreBoard.js'
 
 
 
@@ -17,6 +18,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <UserNamePage/>
+        <ScoreBoard/>
         {/*}
         <div className={styles.description}>
           <p>

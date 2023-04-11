@@ -11,7 +11,7 @@ export const UserNameInput = ({onSubmit}) => {
                 <input className="form-control" type="text" name="username" {...register("username",{ required: true })} />
                     {errors.username && <span> Champ obligatoire </span>}
             </div>
-            <input type="submit" class="btn btn-primary  col"/>
+            <input type="submit" className="btn btn-primary  col"/>
         </form>
     )
 }
