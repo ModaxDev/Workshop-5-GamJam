@@ -15,7 +15,7 @@
     "react-canvas-confetti": "^1.4.0",
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
     "react-hook-form": "^7.43.9"
   }
 }
