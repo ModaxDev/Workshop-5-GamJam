@@ -4,6 +4,7 @@ import Confetti from "@/components/Confetti";
 
 const ColorGame = () => {
     const [gameState, setGameState] = useState('ready'); // 'ready', 'running', 'finished'
+    const [selectedColor, setSelectedColor] = useState("#2ecc71"); // Vert par défaut
     const [currentColor, setCurrentColor] = useState('#ecf0f1'); // Rouge au départ
     const [startTime, setStartTime] = useState(null);
     const [reactionTime, setReactionTime] = useState(null);
@@ -12,25 +13,28 @@ const ColorGame = () => {
     const confettiRef = useRef(); // Ajoutez cette ligne pour créer la
     const [previousResults, setPreviousResults] = useState([]);
 
+    const handleColorChange = (event) => {
+        setSelectedColor(event.target.value);
+    };
 
     useEffect(() => {
         document.body.style.backgroundColor = currentColor;
     }, [currentColor]);
 
     const startGame = () => {
-        setGameState('running');
-        setMessage('');
-        setCurrentColor('#ecf0f1'); // Réinitialiser la couleur
+        setGameState("running");
+        setMessage("");
+        setCurrentColor("#ecf0f1"); // Réinitialiser la couleur
         const delay = Math.floor(Math.random() * (6000 - 2000 + 1)) + 2000;
         setTimeout(() => {
-            setCurrentColor('#2ecc71'); // Changer vers vert
+            setCurrentColor(selectedColor); // Utilisez la couleur sélectionnée
             setStartTime(new Date().getTime());
         }, delay);
     };
 
     const handleClick = () => {
         if (gameState === 'running') {
-            if (currentColor === '#2ecc71') {
+            if (currentColor !== '#ecf0f1') {
                 const endTime = new Date().getTime();
                 const reaction = endTime - startTime;
                 setReactionTime(reaction);
@@ -76,6 +80,22 @@ const ColorGame = () => {
 
     return (
         <div className="container-fluid vh-100">
+            <div className="mb-4 d-flex align-items-center">
+                <label htmlFor="color-select" className="me-2">
+                    Choisissez une couleur :
+                </label>
+                <select
+                    id="color-select"
+                    value={selectedColor}
+                    onChange={handleColorChange}
+                    className="form-select form-control w-auto" // Ajoutez les classes Bootstrap ici
+                >
+                    <option value="#2ecc71">Vert</option>
+                    <option value="#e67e22">Orange</option>
+                    <option value="#f1c40f">Jaune</option>
+                    <option value="#95a5a6">Gris</option>
+                </select>
+            </div>
             <div className="row h-100">
                 <div className="col-md-8 d-flex flex-column justify-content-center align-items-center">
                     <div
