@@ -15,11 +15,15 @@
 
 React Couleur est un jeu de réflexe basé sur la couleur mais surtout la rapidité à effectuer une action.
 
+**Stack** :
+- Next.js
+- Bootstrap
+
 **Fonctionnalités** :
-- Interagir avec un bouton pour commencer une partie
 - Calcul de la différence de temps entre le changement de couleur et l'interaction de l'utilisateur
-- Affichage du résultat en secondes ou microsecondes
+- Affichage du résultat en secondes
 - Possibilité de jouer x fois
+- Affichage du meilleur score enregistré
 
 ## 📦 Installation
 
@@ -35,14 +39,14 @@ React Couleur est un jeu de réflexe basé sur la couleur mais surtout la rapidi
 $ yarn install
 ```
 
-###  🚀 Démarrer l'application
+##  🚀 Démarrer l'application
 
 ```bash
 # Garder le terminal ouvert dans le dossier du projet
 $ yarn dev
 ```
 
-###  Auteurs
+##  Auteurs
 - VERHILLE Clément
 - FLINOIS Dyklan
 - MENU Alexandre
