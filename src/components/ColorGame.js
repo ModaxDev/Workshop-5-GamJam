@@ -106,7 +106,7 @@ const ColorGame = () => {
                         )}
 
                         {gameState === 'running' && (
-                            <button className="btn btn-secondary btn-large" onClick={handleClick}>Validé</button>
+                            <button className="btn btn-secondary btn-large" onClick={handleClick}>Stop</button>
                         )}
 
                         {gameState === 'finished' && (
