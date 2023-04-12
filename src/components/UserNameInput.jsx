@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import React from "react";
-import check_icon from "../img/check_icon.png";
 
 export const UserNameInput = ({ onSubmit }) => {
   const {
