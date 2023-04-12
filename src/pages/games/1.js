@@ -1,5 +1,6 @@
 import ColorGame from "@/components/ColorGame";
 
+
 const One = () => {
 
     return (

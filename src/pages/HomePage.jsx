@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import styles from "@/styles/Home.module.css";
+
 
 export const HomePage = () => {
   return (
-    <>
+    <main className={styles.main}>
       <h1 className="input-title">React Couleur</h1>
       <h2>Choisis le mode de jeu : </h2>
       <div class="row">
@@ -37,7 +39,7 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
-    </>
+      </main>
   );
 };
 

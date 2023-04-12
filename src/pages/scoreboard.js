@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+
+
 const ScoreBoard = () => {
     const [scores, setScores] = useState([]);
 
     useEffect(() => {
         (async () => {
-            const res = await fetch("/api/scoreboardApi");
+            const res = await fetch("/api/FindAllScore");
             const resultat = await res.json();
             setScores(resultat);
             console.log(resultat);
@@ -13,7 +15,7 @@ const ScoreBoard = () => {
 
     return (
         <>
-            <table class="table">
+            <table className="table">
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -23,7 +25,7 @@ const ScoreBoard = () => {
             </thead>
             <tbody>
                 {scores.map((score,index) => (
-                <tr>
+                <tr key={index}>
                     <th scope="row">{index+1}</th>
                     <td>{score.Pseudo}</td>
                     <td>{score.Score}</td>
@@ -35,5 +37,7 @@ const ScoreBoard = () => {
     </>
     );
 };
+
+
 
 export default ScoreBoard;

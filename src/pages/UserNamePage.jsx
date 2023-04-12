@@ -1,16 +1,19 @@
-import UserNameInput from './UserNameInput.jsx'
+import UserNameInput from '../components/UserNameInput.jsx'
 import React, { useState, useEffect } from 'react';
 
-export const UserNamePage = () => {
+export const UserNamePage = ({setIsPseudo}) => {
   const [Username, setUsername] = useState("Joueur 1");
 
-  const onSubmit = data => {
-    console.log(data?.username);
+  const onSubmit = async (data) => {
     setUsername(data?.username);
+    const res = await fetch("/api/InsertPseudo", { method: "POST", body: JSON.stringify(data?.username) });
+    const resultat = await res.json();
+    setIsPseudo(true)
   };
+  
 return(
     <>
-        <h2 className="input-title">{Username}</h2>
+        <h2 className="input-title">Votre pseudo : {Username}</h2>
         <UserNameInput onSubmit = {(data) => onSubmit(data)}/>
     </>
   )
