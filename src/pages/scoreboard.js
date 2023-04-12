@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 
 const ScoreBoard = () => {
@@ -14,7 +14,13 @@ const ScoreBoard = () => {
     }, []);
 
     return (
-        <>
+        <div style={{marginTop: 77}} className={"bg-white rounded w-100 mx-auto text-center shadow"}>
+            <h3 style={{
+                fontFamily: 'Concert One',
+                fontStyleS: "normal",
+                fontSize: 40,
+            }} className="my-3">Classement total</h3>
+            <hr/>
             <table className="table">
             <thead>
                 <tr>
@@ -34,7 +40,7 @@ const ScoreBoard = () => {
                 }
             </tbody>
             </table>
-    </>
+    </div>
     );
 };
 

@@ -5,11 +5,20 @@ import MultipleColorsGame from "@/components/MultipleColorsGame";
 const Two = () => {
 
     return (
-        <div className="container-fluid vh-100 d-flex flex-column">
+        <div className="container-fluid  d-flex flex-column">
             <div className="row">
                 <div className="col-12">
-                    <h2 className="text-center mt-3">Test de temps de réaction multiples couleurs</h2>
-                    <p className="text-center mt-2">Appuyez dès que vous voyez la couleur verte</p>
+                    <h1 style={{
+                        fontFamily: 'Luckiest Guy',
+                        fontStyleS: "normal",
+                        fontSize: 96,
+                    }} className="text-center mt-3">MULTIPlES COLORS
+                        <p style={{
+                            fontFamily: 'Concert One',
+                            fontStyleS: "normal",
+                            fontSize: 40,
+                        }} className="text-center">Test de temps de réaction avec plusieurs couleurs</p>
+                    </h1>
                 </div>
             </div>
             <div className="row flex-grow-1">

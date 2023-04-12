@@ -90,3 +90,19 @@ a {
     color-scheme: dark;
   }
 }
+
+select option {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.circular-button {
+  width: 180px;
+  height: 180px;
+  padding: 0;
+  line-height: 0px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 18px;
+}

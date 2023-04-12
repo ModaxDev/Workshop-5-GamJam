@@ -2,6 +2,8 @@ import React, {useState, useEffect, useRef} from 'react';
 import ReactCanvasConfetti from "react-canvas-confetti";
 import Confetti from "@/components/Confetti";
 import ScoreBoard from "../pages/scoreboard";
+import Select from 'react-select';
+
 
 const ColorGame = () => {
     const [gameState, setGameState] = useState('ready'); // 'ready', 'running', 'finished'
@@ -14,8 +16,31 @@ const ColorGame = () => {
     const confettiRef = useRef(); // Ajoutez cette ligne pour créer la
     const [previousResults, setPreviousResults] = useState([]);
 
-    const handleColorChange = (event) => {
-        setSelectedColor(event.target.value);
+    const options = [
+        {value: '#2ecc71', label: 'Vert', color: '#2ecc71'},
+        {value: '#e67e22', label: 'Orange', color: '#e67e22'},
+        {value: '#f1c40f', label: 'Jaune', color: '#f1c40f'},
+        {value: '#95a5a6', label: 'Gris', color: '#95a5a6'},
+    ];
+
+    const handleColorChange = (selectedOption) => {
+        setSelectedColor(selectedOption.value);
+    };
+
+    const colorStyles = {
+        control: (styles) => ({...styles, backgroundColor: 'white', minHeight: '60px'}),
+        option: (styles, {data, isDisabled, isFocused, isSelected}) => {
+            return {
+                ...styles,
+                backgroundColor: isFocused ? data.color : null,
+                color: isFocused ? 'white' : data.color,
+                cursor: isDisabled ? 'not-allowed' : 'default',
+            };
+        },
+        singleValue: (styles) => ({
+            ...styles,
+            fontSize: '18px', // Taille de la police personnalisée
+        }),
     };
 
     useEffect(() => {
@@ -32,11 +57,14 @@ const ColorGame = () => {
             setStartTime(new Date().getTime());
         }, delay);
     };
-    const SaveScore = async (Score,Pseudo) => {
-        const res = await fetch("/api/UpdateScoreByPseudo", { method: "POST", body: JSON.stringify({score: Score,pseudo: Pseudo}) });
-        
+    const SaveScore = async (Score, Pseudo) => {
+        const res = await fetch("/api/UpdateScoreByPseudo", {
+            method: "POST",
+            body: JSON.stringify({score: Score, pseudo: Pseudo})
+        });
+
         const resultat = await res.json();
-      };
+    };
 
     const handleClick = async () => {
         if (gameState === 'running') {
@@ -47,7 +75,7 @@ const ColorGame = () => {
                 const newScore = calculateScore(reaction);
                 setScore(newScore);
                 setGameState('finished');
-                SaveScore(newScore,"dfgt");
+                SaveScore(newScore, "dfgt");
                 triggerConfetti();
 
                 // Ajouter les résultats aux résultats précédents
@@ -87,53 +115,126 @@ const ColorGame = () => {
     };
 
     return (
-        <div className="container-fluid vh-100">
-            <div className="mb-4 d-flex align-items-center">
-                <label htmlFor="color-select" className="me-2">
-                    Choisissez une couleur :
-                </label>
-                <select
-                    id="color-select"
-                    value={selectedColor}
-                    onChange={handleColorChange}
-                    className="form-select form-control w-auto" // Ajoutez les classes Bootstrap ici
-                >
-                    <option value="#2ecc71">Vert</option>
-                    <option value="#e67e22">Orange</option>
-                    <option value="#f1c40f">Jaune</option>
-                    <option value="#95a5a6">Gris</option>
-                </select>
-            </div>
-            <div className="row h-100">
-                <div className="col-md-8 d-flex flex-column justify-content-center align-items-center">
+        <div className="container-fluid ">
+            <div className="row">
+                <div className="col-md-3">
+                    <div className={"h-100 d-flex flex-column justify-content-start align-items-center"}>
+                        <ScoreBoard/>
+                    </div>
+                </div>
+                <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">
                     <div
-                        className="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+                        className="container-fluid d-flex flex-column justify-content-center align-items-center">
                         <Confetti ref={confettiRef}/>
                         {gameState === 'ready' && (
-                            <button className="btn btn-primary btn-large" onClick={startGame}>Commencer</button>
+                            <button style={{
+                                fontFamily: 'Luckiest Guy',
+                                fontStyleS: "normal",
+                                fontSize: 64,
+                            }} className="btn btn-danger btn-large rounded-circle circular-button"
+                                    onClick={startGame}><p>GO</p></button>
                         )}
 
                         {gameState === 'running' && (
-                            <button className="btn btn-secondary btn-large" onClick={handleClick}>Stop</button>
+                            <button style={{
+                                fontFamily: 'Luckiest Guy',
+                                fontStyleS: "normal",
+                                fontSize: 64,
+                            }} className="btn btn-danger btn-large rounded-circle circular-button"
+                                    onClick={handleClick}>STOP</button>
                         )}
 
                         {gameState === 'finished' && (
                             <div className="text-center">
-                                {message && <p className="text-danger">{message}</p>}
-                                {reactionTime && <p>Temps de réaction: {reactionTime} ms</p>}
-                                {score !== null && <p>Score: {Math.round(score)}</p>}
-                                <button className="btn btn-primary btn-large" onClick={startGame}>Recommencer</button>
+                                <div className="text-center bg-white rounded shadow p-2 px-3 mb-4">
+                                    <div>
+                                        {message && <span className="text-danger pb-1">{message}</span>}
+                                    </div>
+                                    <div>
+                                        {reactionTime && <span
+                                            className={"pb-1"}><strong>Temps de réaction</strong> : {reactionTime} ms</span>}
+                                    </div>
+                                    <div>
+                                        {score !== null && <span
+                                            className={"pb-1"}><strong>Score</strong> : {Math.round(score)}</span>}
+                                    </div>
+                                </div>
+                                <button style={{
+                                    fontFamily: 'Luckiest Guy',
+                                    fontStyleS: "normal",
+                                    fontSize: 64,
+                                }} className="btn btn-danger btn-large rounded-circle circular-button"
+                                        onClick={startGame}>GO
+                                </button>
                             </div>
                         )}
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="h-100 d-flex flex-column justify-content-start align-items-center">
-                        <ScoreBoard />
+                        <div className="mb-4 d-flex align-items-center">
+                            <label style={{
+                                fontFamily: 'Dongle',
+                                fontStyleS: "normal",
+                                fontSize: 38,
+                            }}
+                                   htmlFor="color-select" className="me-2">
+                                Choisis ta couleur :
+                            </label>
+                            <Select
+                                value={options.find((option) => option.value === selectedColor)}
+                                onChange={handleColorChange}
+                                options={options}
+                                styles={colorStyles}
+                            />
+                        </div>
+                        <div className={"w-100  h-100 bg-white rounded shadow text-center mb-5"}>
+                            <h3 style={{
+                                fontFamily: 'Concert One',
+                                fontStyleS: "normal",
+                                fontSize: 40,
+                            }} className="my-3">Derniers résultats</h3>
+                            <hr/>
+                            <p style={{
+                                fontFamily: 'Dongle',
+                                fontStyleS: "normal",
+                                fontSize: 30,
+                            }}>
+                                <strong>Meilleur score :</strong>{" "}
+                                {bestScore(previousResults) !== null
+                                    ? Math.round(bestScore(previousResults))
+                                    : "N/A"}
+                            </p>
+                            <p style={{
+                                fontFamily: 'Dongle',
+                                fontStyleS: "normal",
+                                fontSize: 30,
+                            }}>
+                                <strong>Moyenne des scores :</strong>{" "}
+                                {averageScore(previousResults) !== null
+                                    ? Math.round(averageScore(previousResults))
+                                    : "N/A"}
+                            </p>
+                            {previousResults.map((result, index) => (
+                                <div style={{
+                                    fontFamily: 'Dongle',
+                                    fontStyleS: "normal",
+                                    fontSize: 30,
+                                }} className="row" key={index}>
+                                    <div className="col-6 text-center">
+                                        <span>Essai {index + 1} :</span>
+                                    </div>
+                                    <div className="col-6 text-left">
+                                        <span>{Math.round(result.score)}</span>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="mb-5"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     );
 };
 
