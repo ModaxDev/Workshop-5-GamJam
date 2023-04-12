@@ -1,11 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
-import ReactCanvasConfetti from "react-canvas-confetti";
 import Confetti from "@/components/Confetti";
 import ScoreBoard from "../pages/scoreboard";
 import Select from 'react-select';
+import { useAppContext } from "../context/context.js"
+
+
 
 
 const ColorGame = () => {
+    const { pseudo, setpseudo } = useAppContext();
     const [gameState, setGameState] = useState('ready'); // 'ready', 'running', 'finished'
     const [selectedColor, setSelectedColor] = useState("#2ecc71"); // Vert par défaut
     const [currentColor, setCurrentColor] = useState('#ecf0f1'); // Rouge au départ
@@ -57,10 +60,10 @@ const ColorGame = () => {
             setStartTime(new Date().getTime());
         }, delay);
     };
-    const SaveScore = async (Score, Pseudo) => {
+    const SaveScore = async (score, p) => {
         const res = await fetch("/api/UpdateScoreByPseudo", {
             method: "POST",
-            body: JSON.stringify({score: Score, pseudo: Pseudo})
+            body: JSON.stringify({score: score, pseudo: p})
         });
 
         const resultat = await res.json();
@@ -75,7 +78,8 @@ const ColorGame = () => {
                 const newScore = calculateScore(reaction);
                 setScore(newScore);
                 setGameState('finished');
-                SaveScore(newScore, "dfgt");
+                console.log("pseudo"+ pseudo)
+                SaveScore(newScore, pseudo);
                 triggerConfetti();
 
                 // Ajouter les résultats aux résultats précédents

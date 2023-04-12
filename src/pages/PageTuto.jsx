@@ -1,18 +1,14 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import UserNamePage from "./UserNamePage.jsx";
 
 
 const inter = Inter({ subsets: ["latin"] });
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const PageTuto = () => {
-  const [isPseudo, setIsPseudo] = useState(false);
-  console.log(isPseudo)
   return (
     <div className={styles.container}>
       <Head>
@@ -42,48 +38,15 @@ const PageTuto = () => {
         <h4 className={styles.title}> Mode 3 et 4 :</h4>
         <p>Les modes 3 et 4 sont les modes de jeu prochainement disponibles.</p>
         </div>
-        <UserNamePage setIsPseudo = {(bool) => setIsPseudo(bool)}/>
          <div className={styles.grid}>
-          <a
-            href="/games/1"
-            className={isPseudo ? styles.card : styles.cardDisabled}
+          <Link
+            href="/"
+            className={styles.card}
             target="_blank"
             rel="noopener noreferrer"
-            
-          >
-            <h2 className={styles.title}>Mode Classique</h2>
-            <p className={styles.description}>Mode de jeu 1 "Classique"</p>
-          </a>
-
-          <a
-            href="/src/pages/mode_expert"
-            className={isPseudo ? styles.card : styles.cardDisabled}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={styles.title}>Mode Expert</h2>
-            <p className={styles.description}>Mode de jeu 2 "Expert"</p>
-          </a>
-
-          <a
-            href="/src/pages/mode_3"
-            className={isPseudo ? styles.card : styles.cardDisabled}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={styles.title}>Mode 3</h2>
-            <p className={styles.description}>Mode 3 prochainement</p>
-          </a>
-
-          <a
-            href="/src/pages/mode_4"
-            className={isPseudo ? styles.card : styles.cardDisabled}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={styles.title}>Mode 4</h2>
-            <p className={styles.description}>Mode 4 prochainement</p>
-          </a>
+            >
+            <h2 className={styles.title}>Accueil</h2>
+            </Link>
         </div>
       </main>
     </div>
