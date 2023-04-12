@@ -45,6 +45,7 @@ $ yarn install
 # Garder le terminal ouvert dans le dossier du projet
 $ yarn dev
 ```
+Vous pouvez donc vous rendre sur http://localhost:3000
 
 ##  Auteurs
 - VERHILLE Clément
