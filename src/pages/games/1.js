@@ -4,10 +4,20 @@ import ColorGame from "@/components/ColorGame";
 const One = () => {
 
     return (
-        <div className="container-fluid vh-100 d-flex flex-column">
+        <div className="container-fluid  d-flex flex-column">
             <div className="row">
                 <div className="col-12">
-                    <h2 className="text-center mt-3">Test de temps de réaction avec la couleur</h2>
+                    <h1 style={{
+                        fontFamily: 'Luckiest Guy',
+                        fontStyleS: "normal",
+                        fontSize: 96,
+                    }} className="text-center mt-3">ONE COLOR
+                        <p style={{
+                            fontFamily: 'Concert One',
+                            fontStyleS: "normal",
+                            fontSize: 40,
+                        }} className="text-center">Test de temps de réaction avec une couleur</p>
+                    </h1>
                 </div>
             </div>
             <div className="row flex-grow-1">
