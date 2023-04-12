@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import UserNamePage from "./UserNamePage.jsx";
 import styles from "@/styles/Home.module.css";
+import { useAppContext } from "../context/context.js"
 
 export const HomePage = () => {
+  const [isPseudo, setIsPseudo] = useState(false);
+  const { pseudo, setpseudo } = useAppContext();
   return (
     <>
       <body
@@ -20,7 +24,7 @@ export const HomePage = () => {
             "font-weight": "800",
           }}
         >
-          Bienvenue nomUtilisateur !
+          Bienvenue {pseudo} !
         </span>
         <h1
           style={{
@@ -30,6 +34,7 @@ export const HomePage = () => {
         >
           React Couleur
         </h1>
+        <UserNamePage setIsPseudo = {(bool) => setIsPseudo(bool)}/>
         <h2
           style={{
             "font-family": "Concert One, cursive",
@@ -41,7 +46,7 @@ export const HomePage = () => {
         <section style={{ display: "inline-flex" }}>
           <div class="col-sm" style={{ margin: "0px 20px" }}>
             <div
-              className="card"
+              className={isPseudo ? "card" : styles.cardDisabled}
               style={{ width: "280px", height: "295px", color: "#424242" }}
             >
               <div className="card-body">
@@ -98,7 +103,7 @@ export const HomePage = () => {
           </div>
           <div class="col-sm">
             <div
-              className="card"
+              className={isPseudo ? "card" : styles.cardDisabled}
               style={{
                 width: "280px",
                 height: "295px",

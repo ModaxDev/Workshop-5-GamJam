@@ -9,7 +9,6 @@ const ScoreBoard = () => {
             const res = await fetch("/api/FindAllScore");
             const resultat = await res.json();
             setScores(resultat);
-            console.log(resultat);
         })();
     }, []);
 

@@ -1,7 +1,9 @@
 import ColorGame from "@/components/ColorGame";
+import { useAppContext } from "../../context/context.js"
 
 
 const One = () => {
+    const { pseudo, setpseudo } = useAppContext();
 
     return (
         <div className="container-fluid  d-flex flex-column">
