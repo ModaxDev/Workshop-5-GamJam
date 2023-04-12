@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import ReactCanvasConfetti from "react-canvas-confetti";
 import Confetti from "@/components/Confetti";
+import ScoreBoard from "../pages/scoreboard";
 
 const ColorGame = () => {
     const [gameState, setGameState] = useState('ready'); // 'ready', 'running', 'finished'
@@ -31,8 +32,13 @@ const ColorGame = () => {
             setStartTime(new Date().getTime());
         }, delay);
     };
+    const SaveScore = async (Score,Pseudo) => {
+        const res = await fetch("/api/UpdateScoreByPseudo", { method: "POST", body: JSON.stringify({score: Score,pseudo: Pseudo}) });
+        
+        const resultat = await res.json();
+      };
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (gameState === 'running') {
             if (currentColor !== '#ecf0f1') {
                 const endTime = new Date().getTime();
@@ -41,6 +47,7 @@ const ColorGame = () => {
                 const newScore = calculateScore(reaction);
                 setScore(newScore);
                 setGameState('finished');
+                SaveScore(newScore,"dfgt");
                 triggerConfetti();
 
                 // Ajouter les résultats aux résultats précédents
@@ -75,7 +82,8 @@ const ColorGame = () => {
         const maxScore = 1000;
         const minScore = 0;
         const maxReactionTime = 2000;
-        return Math.max(minScore, maxScore - reactionTime / maxReactionTime * maxScore);
+        const result = Math.max(minScore, maxScore - reactionTime / maxReactionTime * maxScore);
+        return Math.round(result);
     };
 
     return (
@@ -121,31 +129,11 @@ const ColorGame = () => {
                 </div>
                 <div className="col-md-4">
                     <div className="h-100 d-flex flex-column justify-content-start align-items-center">
-                        <h3 className="mb-4">Derniers Résultats</h3>
-                        <p>
-                            <strong>Meilleur score :</strong>{" "}
-                            {bestScore(previousResults) !== null
-                                ? Math.round(bestScore(previousResults))
-                                : "N/A"}
-                        </p>
-                        <p>
-                            <strong>Moyennes des scores :</strong>{" "}
-                            {averageScore(previousResults) !== null
-                                ? Math.round(averageScore(previousResults))
-                                : "N/A"}
-                        </p>
-                        {previousResults.map((result, index) => (
-                            <div key={index}>
-                                <span>Essai {index + 1} :</span>
-                                <span> Temps de réaction - {result.reactionTime} ms,</span>
-                                <span> Score - {Math.round(result.score)}</span>
-                            </div>
-                        ))}
-                    </div>
+                        <ScoreBoard />
                 </div>
             </div>
         </div>
-
+    </div>
     );
 };
 
