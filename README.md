@@ -25,6 +25,8 @@ React Couleur est un jeu de réflexe amusant et captivant qui repose sur la reco
 - Possibilité de jouer x fois
 - Affichage du meilleur score enregistré
 
+## Jouer dès maintenant à cette adresse : https://workshop-5-gam-jam.vercel.app/
+
 ## 📦 Installation
 
 ### ⏮️ Prérequis
