@@ -13,7 +13,7 @@
 
 ## 👨‍🏫 Présentation et Fonctionnalités
 
-React Couleur est un jeu de réflexe basé sur la couleur mais surtout la rapidité à effectuer une action.
+React Couleur est un jeu de réflexe amusant et captivant qui repose sur la reconnaissance et la rapidité d'action en fonction de la couleur. Dans ce jeu, les joueurs doivent être attentifs aux changements de couleur à l'écran et agir rapidement pour effectuer la bonne action en fonction de la couleur affichée. Cela demande une grande concentration et une grande précision pour obtenir le meilleur score possible. Si vous cherchez un jeu pour améliorer votre temps de réaction et votre agilité mentale, React Couleur est le jeu idéal pour vous. Alors, êtes-vous prêt à relever le défi et à battre vos records personnels ? Jouez à React Couleur dès maintenant et mettez vos compétences à l'épreuve !
 
 **Stack** :
 - Next.js
