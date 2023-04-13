@@ -25,8 +25,8 @@ export const UserNameInput = ({ onSubmit }) => {
         style={{
           backgroundColor: "#01AB08",
           color: "white",
-          "font-family": "'Dongle', sans-serif",
-          "font-size": "20px",
+          fontFamily: "'Dongle', sans-serif",
+          fontSize: "20px",
           height: "40px",
         }}
       >

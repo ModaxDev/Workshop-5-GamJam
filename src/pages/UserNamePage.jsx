@@ -8,9 +8,6 @@ export const UserNamePage = ({setIsPseudo}) => {
 
   const onSubmit = async (data) => {
     setpseudo(data.username);
-
-    const res = await fetch("/api/InsertPseudo", { method: "POST", body: JSON.stringify(data?.username) });
-    const resultat = await res.json();
     setIsPseudo(true)
   };
   
