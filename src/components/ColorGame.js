@@ -123,7 +123,7 @@ const ColorGame = () => {
             <div className="row">
                 <div className="col-md-3">
                     <div className={"h-100 d-flex flex-column justify-content-start align-items-center"}>
-                        <ScoreBoard/>
+                    <ScoreBoard newscore={score}/>
                     </div>
                 </div>
                 <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">

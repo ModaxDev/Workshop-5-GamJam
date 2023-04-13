@@ -1,12 +1,12 @@
 import
 React, {useState, useEffect, useRef} from 'react';
-import ReactCanvasConfetti from "react-canvas-confetti";
 import Confetti from "@/components/Confetti";
 import ScoreBoard from "@/pages/scoreboard";
-import Select from "react-select";
+import { useAppContext } from "../context/context.js"
 
 
 const MultipleColorsGame = () => {
+    const { pseudo, setpseudo } = useAppContext();
     const [gameState, setGameState] = useState('ready'); // 'ready', 'running', 'finished'
     const [selectedColor, setSelectedColor] = useState("#2ecc71"); // Vert par défaut
     const [currentColor, setCurrentColor] = useState('#ecf0f1'); // Rouge au départ
@@ -52,6 +52,15 @@ const MultipleColorsGame = () => {
         setTimeout(changeColor, startDelay);
     };
 
+    const SaveScore = async (score, p) => {
+        const res = await fetch("/api/UpdateScoreByPseudo", {
+            method: "POST",
+            body: JSON.stringify({score: score, pseudo: p})
+        });
+
+        const resultat = await res.json();
+    };
+
     const handleClick = () => {
         if (gameState === 'running') {
             if (currentColor === '#2ecc71') {
@@ -61,6 +70,7 @@ const MultipleColorsGame = () => {
                 const newScore = calculateScore(reaction);
                 setScore(newScore);
                 setGameState('finished');
+                SaveScore(newScore, pseudo);
                 triggerConfetti();
 
                 // Ajouter les résultats aux résultats précédents
@@ -95,7 +105,8 @@ const MultipleColorsGame = () => {
         const maxScore = 1000;
         const minScore = 0;
         const maxReactionTime = 2000;
-        return Math.max(minScore, maxScore - reactionTime / maxReactionTime * maxScore);
+        const result = Math.max(minScore, maxScore - reactionTime / maxReactionTime * maxScore);
+        return Math.round(result);
     };
 
     return (
@@ -103,7 +114,7 @@ const MultipleColorsGame = () => {
             <div className="row">
                 <div className="col-md-3">
                     <div className={"h-100 d-flex flex-column justify-content-start align-items-center"}>
-                        <ScoreBoard/>
+                        <ScoreBoard newscore={score}/>
                     </div>
                 </div>
                 <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">

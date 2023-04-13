@@ -10,7 +10,7 @@ export const HomePage = () => {
     <>
       <body
         style={{
-          "background-color": "#0075E1",
+          "backgroundColor": "#0075E1",
           height: "100%",
           color: "white",
           textAlign: "center",
@@ -19,8 +19,8 @@ export const HomePage = () => {
       >
         <span
           style={{
-            "font-family": "'Dongle', sans-serif",
-            "font-size": "30px",
+            fontFamily: "'Dongle', sans-serif",
+            fontSize: "30px",
             "font-weight": "800",
           }}
         >
@@ -28,8 +28,8 @@ export const HomePage = () => {
         </span>
         <h1
           style={{
-            "font-family": "Luckiest Guy, cursive",
-            "font-size": "70px",
+            fontFamily: "Luckiest Guy, cursive",
+            fontSize: "70px",
           }}
         >
           React Couleur
@@ -37,7 +37,7 @@ export const HomePage = () => {
         <UserNamePage setIsPseudo = {(bool) => setIsPseudo(bool)}/>
         <h2
           style={{
-            "font-family": "Concert One, cursive",
+            fontFamily: "Concert One, cursive",
             "margin-bottom": "50px",
           }}
         >
@@ -53,8 +53,8 @@ export const HomePage = () => {
                 <h5
                   className="card-title"
                   style={{
-                    "font-family": "Luckiest Guy, cursive",
-                    "font-size": "30px",
+                    fontFamily: "Luckiest Guy, cursive",
+                    fontSize: "30px",
                   }}
                 >
                   One color
@@ -62,8 +62,8 @@ export const HomePage = () => {
                 <h6
                   className="card-subtitle"
                   style={{
-                    "font-family": "'Dongle', sans-serif",
-                    "font-size": "30px",
+                    fontFamily: "'Dongle', sans-serif",
+                    fontSize: "30px",
                     "font-weight": "800",
                   }}
                 >
@@ -72,8 +72,8 @@ export const HomePage = () => {
                 <p
                   className="card-text"
                   style={{
-                    "font-family": "'Dongle', sans-serif",
-                    "font-size": "28px",
+                    fontFamily: "'Dongle', sans-serif",
+                    fontSize: "28px",
                     margin: "10px 0px 30px",
                     "line-height": "25px",
                     "font-weight": "300",
@@ -89,8 +89,8 @@ export const HomePage = () => {
                     style={{
                       backgroundColor: "#FF207E",
                       color: "white",
-                      "font-family": "Luckiest Guy, cursive",
-                      "font-size": "17px",
+                      fontFamily: "Luckiest Guy, cursive",
+                      fontSize: "17px",
                       height: "48px",
                       width: "105px",
                     }}
@@ -114,8 +114,8 @@ export const HomePage = () => {
                 <h5
                   className="card-title"
                   style={{
-                    "font-family": "Luckiest Guy, cursive",
-                    "font-size": "30px",
+                    fontFamily: "Luckiest Guy, cursive",
+                    fontSize: "30px",
                   }}
                 >
                   Multiple colors
@@ -123,8 +123,8 @@ export const HomePage = () => {
                 <h6
                   className="card-subtitle"
                   style={{
-                    "font-family": "'Dongle', sans-serif",
-                    "font-size": "30px",
+                    fontFamily: "'Dongle', sans-serif",
+                    fontSize: "30px",
                     "font-weight": "800",
                   }}
                 >
@@ -133,14 +133,14 @@ export const HomePage = () => {
                 <p
                   className="card-text"
                   style={{
-                    "font-family": "'Dongle', sans-serif",
-                    "font-size": "28px",
+                    fontFamily: "'Dongle', sans-serif",
+                    fontSize: "28px",
                     margin: "10px 0px 30px",
                     "line-height": "25px",
                     "font-weight": "300",
                   }}
                 >
-                  Lorsque la bonne couleur apparaît, cliques le plus rapidement
+                  Lorsque la couleur verte apparaît, cliques le plus rapidement
                   possible.
                 </p>
                 <a href="/games/2" className="card-link">
@@ -150,8 +150,8 @@ export const HomePage = () => {
                     style={{
                       backgroundColor: "#FF7E20",
                       color: "white",
-                      "font-family": "Luckiest Guy, cursive",
-                      "font-size": "17px",
+                      fontFamily: "Luckiest Guy, cursive",
+                      fontSize: "17px",
                       height: "48px",
                       width: "105px",
                     }}
@@ -170,8 +170,8 @@ export const HomePage = () => {
                   bottom: "0",
                   right: "0",
                   margin: "25px",
-                  "font-family": "Concert One, cursive",
-                  "font-size": "20px",
+                  fontFamily: "Concert One, cursive",
+                  fontSize: "20px",
                 }}
               >
                 Comment jouer ?
