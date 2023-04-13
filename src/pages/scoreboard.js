@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 
-const ScoreBoard = () => {
+const ScoreBoard = ({newscore}) => {
     const [scores, setScores] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ const ScoreBoard = () => {
             const resultat = await res.json();
             setScores(resultat);
         })();
-    }, []);
+    }, [newscore]);
 
     return (
         <div style={{marginTop: 77}} className={"bg-white rounded w-100 mx-auto text-center shadow"}>
@@ -29,7 +29,7 @@ const ScoreBoard = () => {
                 </tr>
             </thead>
             <tbody>
-                {scores.map((score,index) => (
+                {scores?.map((score,index) => (
                 <tr key={index}>
                     <th scope="row">{index+1}</th>
                     <td>{score.Pseudo}</td>
